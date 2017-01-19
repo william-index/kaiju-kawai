@@ -1,0 +1,10 @@
+.kaiju-playground {
+  display: block;
+  width: 100vw;
+  height: 60px;
+  /*background: red;*/
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2147483647;
+}

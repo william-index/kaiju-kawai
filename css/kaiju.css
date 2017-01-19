@@ -1,0 +1,11 @@
+.kaiju-monster-sprite {
+  display: block;
+  width: 60px;
+  height: 60px;
+  /*outline: 1px solid gold;*/
+  background-image: url('chrome-extension://__MSG_@@extension_id__/img/sprites.png');
+}
+
+.kaiju-alt-frame {
+  background-position: -60px 0;
+}

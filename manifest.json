@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Kaiju Kawai",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/data-structure.js",
+        "js/loop.js",
+        "js/app.js"
+      ],
+      "css": [
+        "css/pagestyles.css",
+        "css/playground.css",
+        "css/kaiju.css"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+     "img/sprites.png"
+   ]
+}

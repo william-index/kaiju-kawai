@@ -2,10 +2,28 @@
   display: block;
   width: 60px;
   height: 60px;
-  /*outline: 1px solid gold;*/
+  position: absolute;
+  overflow: hidden;
+}
+
+.kaiju-monster-sprite::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 60px;
+  position: absolute;
+  left: 0;
   background-image: url('chrome-extension://__MSG_@@extension_id__/img/sprites.png');
 }
 
-.kaiju-alt-frame {
-  background-position: -60px 0;
+.kaiju-alt-frame::after {
+  left: -60px;
+}
+
+/* Specific Kaiju Positions*/
+.kaiju-monster--reptile {
+  transform-origin: bottom center;
+}
+.kaiju-monster--reptile::after {
+  top: 0px;
 }

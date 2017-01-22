@@ -5,10 +5,29 @@ KAIJU.state_ = {
   eggs: [],
   monsters: [
     {
-      'type': 'sample',
+      'type': 'reptile',
       'id': '9218734',
-      'frames': 2,
-      'row': 0
-    }
+      'good': 0,
+      'evil': 0,
+      'direction': 1
+    },
+    {
+      'type': 'reptile',
+      'id': '9218735',
+      'good': 20,
+      'evil': 0,
+      'direction': 1
+    },
   ]
 };
+
+KAIJU.kaijuData_ = {
+  'reptile': {
+    'speed': 12,
+    'evolvePoint': 20
+  },
+  'darkRaptor': {
+    'speed': 4,
+    'evolvePoint': -1
+  }
+}

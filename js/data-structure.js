@@ -9,14 +9,16 @@ KAIJU.state_ = {
       'id': '9218734',
       'good': 0,
       'evil': 0,
-      'direction': 1
+      'direction': 1,
+      'clicks': 0
     },
     {
       'type': 'reptile',
       'id': '9218735',
       'good': 20,
       'evil': 0,
-      'direction': 1
+      'direction': 1,
+      'clicks': 0
     },
   ]
 };

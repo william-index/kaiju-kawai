@@ -4,6 +4,7 @@
   height: 60px;
   position: absolute;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .kaiju-monster-sprite::after {

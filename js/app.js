@@ -27,7 +27,25 @@ KAIJU.addKaiju = function() {
         kaijuMonster.setAttribute('data-kaiju-id', monster.id);
         kaijuMonster.setAttribute('data-x-coord', Math.random() * (window.innerWidth - 60) + 1);
 
+        kaijuMonster.addEventListener('click', function() {
+          KAIJU.clickKaiju(this);
+        }.bind(kaijuMonster));
+
     KAIJU.els_.playground.appendChild(kaijuMonster);
+  });
+};
+
+KAIJU.clickKaiju = function(targetKaiju) {
+  var kaijuID = targetKaiju.getAttribute('data-kaiju-id');
+  
+  KAIJU.state_.monsters.forEach(function(monster, i) {
+    if (kaijuID == monster.id) {
+      KAIJU.state_.monsters[i].clicks += 1;
+      console.log(KAIJU.state_.monsters[i].clicks);
+
+      KAIJU.saveData();
+      return;
+    }
   });
 };
 
@@ -48,34 +66,47 @@ KAIJU.updateKaiju = function(monsterData, i) {
   KAIJU.scaleKaiju(targetKaiju, monsterData, baseStats);
 };
 
-KAIJU.scaleKaiju = function(monster, monsterData, baseStats) {
+KAIJU.scaleKaiju = function(targetKaiju, monsterData, baseStats) {
   var scale = 1;
 
   if (baseStats.evolvePoint !== -1) {
     scale = (monsterData.good + monsterData.evil)/baseStats.evolvePoint;
-    if (scale < 0.3) {scale = 0.3};
+    if (scale < 0.5) {scale = 0.5};
   }
 
-  monster.style.transform = monster.style.transform + ' scale(' + scale + ')';
+  targetKaiju.style.transform =
+      targetKaiju.style.transform + ' scale(' + scale + ')';
 };
 
-KAIJU.walkKaiju = function(monster, speed, direction, i) {
-  var left = parseInt(monster.getAttribute('data-x-coord'));
+KAIJU.walkKaiju = function(targetKaiju, speed, direction, i) {
+  var left = parseInt(targetKaiju.getAttribute('data-x-coord'));
       left += speed * direction;
   if (left > window.innerWidth - 60 || left < 0) {
     direction = direction * -1;
   }
 
-  monster.setAttribute('data-x-coord', left);
-  monster.classList.toggle('kaiju-alt-frame');
-  monster.style.transform = 'translateX(' + left + 'px)';
+  targetKaiju.setAttribute('data-x-coord', left);
+  targetKaiju.classList.toggle('kaiju-alt-frame');
+  targetKaiju.style.transform = 'translateX(' + left + 'px)';
 
   if (direction === -1) {
-    monster.style.transform = monster.style.transform +
+    targetKaiju.style.transform = targetKaiju.style.transform +
         ' rotateY(180deg)';
   }
 
   KAIJU.state_.monsters[i].direction = direction;
 };
 
-KAIJU.init();
+KAIJU.saveData = function() {
+  chrome.storage.sync.set({ "gameState": KAIJU.state_ }, function(){});
+};
+
+chrome.storage.sync.get(["gameState"], function(items){
+  console.log(items.gameState);
+
+  if (items.gameState !== undefined) {
+    KAIJU.state_ = items.gameState;
+  }
+
+  KAIJU.init();
+});

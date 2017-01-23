@@ -20,7 +20,7 @@
     }
   ],
   "web_accessible_resources": [
-   "img/sprites.png"
+   "img/kaiju_vector_sprites.svg"
   ],
   "permissions": [
     "storage"

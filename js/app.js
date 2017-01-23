@@ -37,7 +37,7 @@ KAIJU.addKaiju = function() {
 
 KAIJU.clickKaiju = function(targetKaiju) {
   var kaijuID = targetKaiju.getAttribute('data-kaiju-id');
-  
+
   KAIJU.state_.monsters.forEach(function(monster, i) {
     if (kaijuID == monster.id) {
       KAIJU.state_.monsters[i].clicks += 1;
@@ -70,7 +70,8 @@ KAIJU.scaleKaiju = function(targetKaiju, monsterData, baseStats) {
   var scale = 1;
 
   if (baseStats.evolvePoint !== -1) {
-    scale = (monsterData.good + monsterData.evil)/baseStats.evolvePoint;
+    // scale = (monsterData.good + monsterData.evil)/baseStats.evolvePoint;
+    scale = monsterData.clicks/baseStats.evolvePoint;
     if (scale < 0.5) {scale = 0.5};
   }
 
@@ -98,6 +99,7 @@ KAIJU.walkKaiju = function(targetKaiju, speed, direction, i) {
 };
 
 KAIJU.saveData = function() {
+  // @TODO update on a timer as there is a max writes/second quota
   chrome.storage.sync.set({ "gameState": KAIJU.state_ }, function(){});
 };
 

@@ -24,6 +24,11 @@ KAIJU.state_ = {
 };
 
 KAIJU.kaijuData_ = {
+  'egg': {
+    'speed': 0,
+    'evolvePoint': 20,
+    'egg': true
+  },
   'reptile': {
     'speed': 12,
     'evolvePoint': 20
